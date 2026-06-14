@@ -1,0 +1,46 @@
+/* Layout.module.css */
+.wrapper {
+    padding: 0 16px;
+}
+
+.header {
+    background-color: var(--color-bg-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding: 1rem 1.5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-accent);
+}
+
+.nav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.navLink {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    transition: color 0.2s;
+}
+
+.navLink:hover {
+    color: var(--color-text-primary);
+}
+
+.navLinkActive {
+    color: var(--color-accent);
+}
+
+.main {
+
+    padding: 2rem 1.5rem;
+}

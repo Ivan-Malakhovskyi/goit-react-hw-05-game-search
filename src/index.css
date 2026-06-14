@@ -1,35 +1,101 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  /* ═══════════════════════════════
+     ACCENT / BRAND
+  ═══════════════════════════════ */
+  --color-accent: #a855f7;
+  /* purple-500 — основний акцент */
+  --color-accent-hover: #9333ea;
+  /* purple-600 — hover стан */
+  --color-accent-light: #c084fc;
+  /* purple-400 — світліший варіант */
+  --color-accent-dim: #a855f720;
+  /* purple-500 з 12% opacity — фон бейджа */
 
+  /* ═══════════════════════════════
+     BACKGROUND
+  ═══════════════════════════════ */
+  --color-bg: #0f0f0f;
+  /* сторінка — майже чорний */
+  --color-bg-surface: #1a1a1a;
+  /* картки, header, input */
+  --color-bg-elevated: #222222;
+  /* hover стан карток */
+
+  /* ═══════════════════════════════
+     BORDER
+  ═══════════════════════════════ */
+  --color-border: #2a2a2a;
+  /* звичайна рамка */
+  --color-border-hover: #a855f7;
+  /* рамка при hover на картці */
+
+  /* ═══════════════════════════════
+     TEXT
+  ═══════════════════════════════ */
+  --color-text-primary: #ffffff;
+  /* заголовки, основний текст */
+  --color-text-secondary: #aaaaaa;
+  /* опис, підзаголовки */
+  --color-text-muted: #888888;
+  /* неактивна навігація, мета */
+  --color-text-subtle: #555555;
+  /* дата, другорядне */
+  --color-text-disabled: #333333;
+  /* задизейблений стан */
+
+  /* ═══════════════════════════════
+     SEMANTIC
+  ═══════════════════════════════ */
+  --color-error: #ef4444;
+  /* red-500 — помилки */
+  --color-error-hover: #dc2626;
+  /* red-600 */
+  --color-success: #22c55e;
+  /* green-500 */
+  --color-warning: #f59e0b;
+  /* amber-500 */
+
+  /* ═══════════════════════════════
+     SPACING (бонус — щоб не гадати)
+  ═══════════════════════════════ */
+  --radius-sm: 0.5rem;
+  /* 8px  — кнопки, бейджи */
+  --radius-md: 0.75rem;
+  /* 12px — input, маленькі картки */
+  --radius-lg: 1rem;
+  /* 16px — картки */
+  --radius-xl: 1.25rem;
+  /* 20px — великі картки, модалки */
+  --radius-full: 999px;
+  /* кругла пілюля — genre кнопки */
+
+  /* ═══════════════════════════════
+     TRANSITION
+  ═══════════════════════════════ */
+  --transition: 0.2s ease;
+  /* скрізь одне значення */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+/* index.css — глобальні стилі, НЕ module */
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+
+  line-height: 1.5;
   margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }

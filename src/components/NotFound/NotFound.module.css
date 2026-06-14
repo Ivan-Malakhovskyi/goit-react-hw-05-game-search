@@ -1,0 +1,28 @@
+/* NotFound.module.css */
+.container {
+    text-align: center;
+    padding: 6rem 1rem;
+}
+
+.code {
+    font-size: 6rem;
+    font-weight: 800;
+    color: var(--color-text-disabled);
+    line-height: 1;
+}
+
+.text {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    margin: 1rem 0 2rem;
+}
+
+.link {
+    color: var(--color-accent);
+    font-weight: 500;
+    transition: color var(--transition);
+}
+
+.link:hover {
+    color: var(--color-accent-light);
+}
