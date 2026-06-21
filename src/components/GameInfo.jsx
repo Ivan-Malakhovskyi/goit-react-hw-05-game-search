@@ -1,15 +1,12 @@
 import React from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
-export const GameInfo = () => {
-  const params = useParams();
+const GameInfo = () => {
+  const navigate = useNavigate();
 
-  const obj = {
-    a: 5,
-    b: 7,
-  };
-  console.dir(obj);
-  console.table("🚀 ~ GameInfo ~ params:", params);
+  console.log(navigate);
 
   return <div>GameInfo </div>;
 };
+
+export default GameInfo;
