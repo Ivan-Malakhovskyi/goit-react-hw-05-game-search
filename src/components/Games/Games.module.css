@@ -55,7 +55,97 @@
 }
 
 
-/* .search {
+/* Games.module.css — додаємо нові стилі до вже існуючих */
+
+/* ... попередні стилі залишаються ... */
+
+.state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem 1rem;
+    color: var(--color-text-subtle);
+    gap: 0.75rem;
+}
+
+.emptyIcon {
+    font-size: 3rem;
+}
+
+.spinner {
+    width: 2rem;
+    height: 2rem;
+    border: 3px solid var(--color-border);
+    border-top-color: var(--color-accent);
+    border-radius: var(--radius-full);
+    animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.error {
+    background-color: #1f0000;
+    border: 1px solid var(--color-error);
+    border-radius: var(--radius-md);
+    padding: 1rem 1.25rem;
+    color: var(--color-error);
+    margin-bottom: 1rem;
+}
+
+.cardImage {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
+/* Оновлюємо картку під нову структуру з картинкою */
+.card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 0;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color var(--transition);
+}
+
+.card:hover {
+    border-color: var(--color-border-hover);
+}
+
+.cardBody {
+    padding: 1rem;
+}
+
+.cardTitle {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.cardGenre {
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+    margin-bottom: 0.25rem;
+}
+
+.cardRating {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+}
+
+.search {
     width: 100%;
     background-color: var(--color-bg-surface);
     border: 1px solid var(--color-border);
@@ -113,4 +203,4 @@
 .emptyIcon {
     font-size: 3rem;
     margin-bottom: 0.75rem;
-} */
+}

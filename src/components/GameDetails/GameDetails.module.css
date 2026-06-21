@@ -112,3 +112,75 @@
 .outlet {
     min-height: 200px;
 }
+
+
+/* GameDetail.module.css — додаємо нові стилі */
+
+/* ... попередні стилі залишаються ... */
+
+.stateWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 40vh;
+    gap: 1rem;
+}
+
+.spinner {
+    width: 2rem;
+    height: 2rem;
+    border: 3px solid var(--color-border);
+    border-top-color: var(--color-accent);
+    border-radius: var(--radius-full);
+    animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.errorText {
+    color: var(--color-error);
+    font-size: 1rem;
+}
+
+.backBtn {
+    background: none;
+    border: none;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: color var(--transition);
+}
+
+.backBtn:hover {
+    color: var(--color-text-primary);
+}
+
+.back {
+    display: inline-block;
+    background: none;
+    border: none;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    transition: color var(--transition);
+    padding: 0;
+}
+
+.back:hover {
+    color: var(--color-text-primary);
+}
+
+.heroImage {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: var(--radius-xl);
+    margin-bottom: 1.5rem;
+    display: block;
+}
