@@ -1,5 +1,7 @@
+import { Suspense } from "react";
 import { Link, NavLink, Outlet } from "react-router";
 import styles from "./Layout.module.css";
+import { Loader } from "../Loader";
 
 export const Layout = () => {
   return (
@@ -7,7 +9,7 @@ export const Layout = () => {
       <header className={styles.header}>
         <Link to="/">Logo</Link>
 
-        <nav>
+        <nav className={styles.nav}>
           <NavLink
             to="/"
             className={({ isActive }) =>
@@ -16,20 +18,23 @@ export const Layout = () => {
           >
             Home
           </NavLink>
+
           <NavLink
-            to="/games"
+            to="/games/search"
             className={({ isActive }) =>
               isActive ? `${styles.navLinkActive}` : ""
             }
           >
-            Games
+            Games Search
           </NavLink>
         </nav>
       </header>
 
-      <main className={styles.main}>
-        <Outlet />
-      </main>
+      <Suspense fallback={<Loader />}>
+        <main className={styles.main}>
+          <Outlet />
+        </main>
+      </Suspense>
     </div>
   );
 };

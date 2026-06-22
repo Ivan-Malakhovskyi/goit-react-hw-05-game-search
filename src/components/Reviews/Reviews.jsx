@@ -1,7 +1,7 @@
 import { mockReviews } from "../../dataSeed/reviews";
 import styles from "./Reviews.module.css";
 
-export const Reviews = () => {
+const Reviews = () => {
   return (
     <div>
       <p>Відгукb {mockReviews.length}</p>
@@ -23,3 +23,5 @@ export const Reviews = () => {
     </div>
   );
 };
+
+export default Reviews;

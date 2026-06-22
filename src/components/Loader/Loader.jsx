@@ -1,12 +1,10 @@
-import styles from "./PageLoader.module.css";
+import styles from "./Loader.module.css";
 
-function Loader() {
+export const Loader = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.spinner} />
       <p className={styles.text}>Завантаження...</p>
     </div>
   );
-}
-
-export default Loader;
+};

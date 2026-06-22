@@ -1,4 +1,4 @@
-export const NewReview = () => {
+const NewReview = () => {
   return (
     <div>
       {" "}
@@ -6,3 +6,5 @@ export const NewReview = () => {
     </div>
   );
 };
+
+export default NewReview;

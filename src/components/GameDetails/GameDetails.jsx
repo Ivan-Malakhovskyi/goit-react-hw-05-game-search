@@ -1,72 +1,122 @@
-import { Link, NavLink, Outlet, useParams } from "react-router";
-import { games } from "../../dataSeed/games";
+import { Link, NavLink, Outlet, useLocation, useParams } from "react-router";
+import { useEffect, useRef, useState } from "react";
+import { getGameById } from "../API/gameService";
+import { Loader } from "../Loader";
+import styleGames from "../GameList/GameList.module.css";
 import styles from "./GameDetails.module.css";
 
-export const GameDetails = () => {
+const GameDetails = () => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [gameDetail, setGameDetail] = useState([]);
   const { gameId } = useParams();
 
-  const game = games.find(({ id }) => id === Number(gameId));
+  const location = useLocation();
 
-  if (!game) {
-    return (
-      <div className={styles.notFound}>
-        <p className={styles.notFoundIcon}>😢</p>
-        <h3 className={styles.notFoundText}>Такої гри не знайдено</h3>
+  const controller = useRef();
 
-        <Link className={styles.backLink} to="/games">
-          повернутися до колекції
-        </Link>
-      </div>
-    );
-  }
+  const backLinkLocation = location?.state?.from ?? "/";
+
+  useEffect(() => {
+    if (!gameId) return;
+
+    const getMovieById = async () => {
+      if (controller.current) {
+        controller.current.abort();
+      }
+
+      controller.current = new AbortController();
+
+      try {
+        setLoading(true);
+
+        const resp = await getGameById(gameId, controller);
+
+        setGameDetail(resp);
+      } catch (error) {
+        if (error.code !== "ERR_CANCELLED") {
+          setError(error);
+          console.log(error);
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getMovieById();
+  }, [gameId]);
 
   return (
     <>
-      <h1>GameInfo</h1>
+      {loading && <Loader />}
 
-      <Link to="/games" className={styles.back}>
+      <Link to={backLinkLocation} className={styles.back}>
         Повернутися до колекції
       </Link>
 
-      <div className={styles.card}>
-        <span className={styles.cardHeader}>{game.img}</span>
-        <div>
-          <h1 className={styles.cardTitle}>{game.title}</h1>
-          <p className={styles.cardGenre}>{game.genre}</p>
-          <p className={styles.cardRating}>{"⭐".repeat(game.rating)}</p>
+      <h1>GameInfo</h1>
+
+      {error && !gameDetail && <div>Щось пішло не так</div>}
+
+      {!gameId ? (
+        <div className={styles.notFound}>
+          <p className={styles.notFoundIcon}>😢</p>
+          <h3 className={styles.notFoundText}>Такої гри не знайдено</h3>
+
+          <Link className={styles.backLink} state={{ from: location }}>
+            повернутися до колекції
+          </Link>
         </div>
+      ) : (
+        gameDetail && (
+          <div className={styleGames.card}>
+            <img
+              className={styleGames.cardImage}
+              src={gameDetail.background_image}
+              alt={name}
+            />
 
-        <p className={styles.cardDesc}>{game.description}</p>
+            <span className={styleGames.cardHeader}>{gameDetail.released}</span>
+            <div>
+              <h1 className={styleGames.cardTitle}>{gameDetail.name}</h1>
+              <p className={styleGames.cardGenre}>{gameDetail.genre}</p>
+            </div>
 
-        <div>
-          <span>{game.year}</span>
-          <span>{game.platform}</span>
-        </div>
+            <p className={styleGames.cardDesc}>{gameDetail.description}</p>
 
-        <div className={styles.tab}>
-          <NavLink
-            to={`/games/${gameId}/reviews`}
-            className={({ isActive }) =>
-              isActive ? `${styles.tab} ${styles.tabActive}` : ""
-            }
-          >
-            Відгуки
-          </NavLink>
+            <div>
+              <span>{gameDetail.year}</span>
+              <span>{gameDetail.platform}</span>
+            </div>
 
-          <NavLink
-            to={`/games/${gameId}/reviews/new`}
-            className={({ isActive }) =>
-              isActive ? `${styles.tab} ${styles.tabActive}` : ""
-            }
-          >
-            Новий відгук
-          </NavLink>
-        </div>
+            <div className={styleGames.tab}>
+              <NavLink
+                to={`/games/${gameId}/reviews`}
+                className={({ isActive }) =>
+                  isActive ? `${styleGames.tab} ${styleGames.tabActive}` : ""
+                }
+              >
+                Відгуки
+              </NavLink>
 
-        <div>
-          <Outlet />
-        </div>
-      </div>
+              <NavLink
+                to={`/games/${gameId}/reviews/new`}
+                className={({ isActive }) =>
+                  isActive ? `${styles.tab} ${styles.tabActive}` : ""
+                }
+              >
+                Новий відгук
+              </NavLink>
+            </div>
+
+            <div>
+              <Outlet />
+            </div>
+          </div>
+        )
+      )}
     </>
   );
 };
+
+export default GameDetails;
