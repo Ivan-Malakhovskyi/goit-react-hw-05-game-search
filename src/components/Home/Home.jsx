@@ -44,7 +44,7 @@ const Home = () => {
       <h1 className={styles.title}>Game Search</h1>
       <p className={styles.subtitle}>Знайди свою наступну улюблену гру</p>
 
-      {error && !games && <div>Шось пішло не так 😢</div>}
+      {!games && !loading && error && <div>Шось пішло не так 😢</div>}
 
       {loading ? (
         <Loader />

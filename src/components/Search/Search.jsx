@@ -80,7 +80,7 @@ const Search = () => {
         <div>Таку гру не знайдено</div>
       )}
 
-      {error && games.length === 0 && !loading && <div>Щось пішло не так</div>}
+      {!games && !loading && error && <div>Щось пішло не так 😢</div>}
 
       <Toaster />
     </>

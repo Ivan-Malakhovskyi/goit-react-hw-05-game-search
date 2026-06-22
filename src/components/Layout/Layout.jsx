@@ -20,7 +20,7 @@ export const Layout = () => {
           </NavLink>
 
           <NavLink
-            to="/games/search"
+            to="/search"
             className={({ isActive }) =>
               isActive ? `${styles.navLinkActive}` : ""
             }
