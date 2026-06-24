@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { useQueryParams } from "../hooks/useQueryParams";
 import { getByQuery } from "../API/gameService";
+import { useQueryParams } from "../hooks/useQueryParams";
 import { Loader } from "../Loader";
 import GameList from "../GameList/GameList";
 import styles from "./Search.module.css";
@@ -10,9 +10,7 @@ const Search = () => {
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const { searchGame, handleFormSubmit } = useQueryParams({
-    games,
-  });
+  const { searchGame, handleFormSubmit } = useQueryParams({ games });
   const [searchFailed, setSearchFailed] = useState(false);
 
   const controller = useRef();
@@ -40,7 +38,7 @@ const Search = () => {
 
         setGames(resp);
       } catch (error) {
-        if (error.name !== "ERR_CANCELLED") {
+        if (error.code !== "ERR_CANCELLED") {
           console.log(error.name);
           setError(error);
         }
